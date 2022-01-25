@@ -1,4 +1,4 @@
-import { Typography, Box, Button } from '@mui/material';
+import { Typography, Box, Button, Container } from '@mui/material';
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -18,7 +18,7 @@ SwiperCore.use([Autoplay, Scrollbar]);
 const Slider = () => {
 
     return (
-        <Box sx={{ height: '100vh' }}>
+        <Container maxWidth="xl" sx={{ height: '90vh' }}>
             <Swiper
                 scrollbar={{
                     "hide": true
@@ -94,7 +94,7 @@ const Slider = () => {
                     </Box>
                 </SwiperSlide>
             </Swiper >
-        </Box>
+        </Container>
     );
 };
 
