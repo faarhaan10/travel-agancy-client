@@ -7,6 +7,7 @@ import './App.css';
 import Home from './Componants/Home/Home/Home';
 import Login from './Componants/Authentication/Login/Login';
 import Registration from './Componants/Authentication/Registration/Registration';
+import NotFound from './Componants/NotFound/NotFound';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
