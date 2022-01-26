@@ -11,6 +11,7 @@ const useFirebase = () => {
     const [error, setError] = useState('');
     const [admin, setAdmin] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [openAlert, setOpenAlert] = useState(true);
 
     //my database url
     const databaseUrl = 'https://rizas-parlour.herokuapp.com';
@@ -123,14 +124,16 @@ const useFirebase = () => {
 
     return {
         user,
-        handleLogOut,
-        handleGoogleLogin,
-        handleCreateUser,
-        handleUserLogin,
         error,
-        databaseUrl,
         admin,
-        isLoading
+        isLoading,
+        openAlert,
+        setOpenAlert,
+        databaseUrl,
+        handleLogOut,
+        handleUserLogin,
+        handleCreateUser,
+        handleGoogleLogin,
     }
 };
 

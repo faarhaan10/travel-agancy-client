@@ -1,5 +1,6 @@
 import React from 'react';
-import useFirebase from '../../../hooks/useFirebase';
+import useAuth from '../../../hooks/useAuth';
+import AlertMessage from '../../Shared/AlertMessage/AlertMessage';
 import Footer from '../../Shared/Footer/Footer';
 import Navigation from '../../Shared/Navigation/Navigation';
 import Banner from '../Banner/Banner';
@@ -7,7 +8,7 @@ import OurBlogs from '../Blogs/OurBlogs/OurBlogs';
 import Contact from '../Contact/Contact';
 
 const Home = () => {
-    useFirebase();
+    const { user } = useAuth();
     return (
         <div id='home'>
             <Navigation />
@@ -15,6 +16,7 @@ const Home = () => {
             <OurBlogs />
             <Contact />
             <Footer />
+            {user.email && <AlertMessage severity={'success'} message={'login successful'} />}
         </div>
     );
 };

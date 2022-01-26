@@ -11,16 +11,18 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { CardMedia, Stack } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
-
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import useAuth from '../../../hooks/useAuth'
 
 const Navigation = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [navbar, setNavbar] = React.useState(false);
+
+    const { user, handleLogOut } = useAuth();
+    console.log(user.photoURL)
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -189,10 +191,15 @@ const Navigation = () => {
                         </Link>
                     </Box>
                     {/* avatar area  */}
-                    <Box sx={{ flexGrow: 0 }}>
+                    {user.photoURL ? <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar
+                                    alt={user.displayName}
+                                    src={user.photoURL}
+                                >
+                                    {user?.displayName?.slice(0, 1)}
+                                </Avatar>
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -213,9 +220,17 @@ const Navigation = () => {
                         >
                             <MenuItem onClick={handleCloseUserMenu}>
                                 <Link to='/profile' style={{ textDecoration: 'none' }}>
-                                    <Typography textAlign="center">
-                                        My Profile
-                                    </Typography>
+                                    <Stack>
+                                        <CardMedia
+                                            component="img"
+                                            height='100'
+                                            image={user.photoURL}
+                                            alt="green iguana"
+                                        />
+                                        <Typography textAlign="center">
+                                            {user.displayName}
+                                        </Typography>
+                                    </Stack>
                                 </Link>
                             </MenuItem>
                             <MenuItem onClick={handleCloseUserMenu}>
@@ -225,13 +240,25 @@ const Navigation = () => {
                                     </Typography>
                                 </Link>
                             </MenuItem>
-                            <MenuItem onClick={handleCloseUserMenu}>
+                            <MenuItem onClick={handleLogOut}>
                                 <Typography textAlign="center">
                                     Logout
                                 </Typography>
                             </MenuItem>
                         </Menu>
                     </Box>
+                        :
+                        <Link
+                            to='/login'
+                            style={{ textDecoration: 'none' }}>
+                            <Button
+                                onClick={handleCloseNavMenu}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
+                            >
+                                Login
+                            </Button>
+                        </Link>
+                    }
                 </Toolbar>
             </Container>
         </AppBar>

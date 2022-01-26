@@ -3,10 +3,16 @@ import { Button, Chip, Container, Divider, Grid, TextField, Typography } from '@
 import { Box } from '@mui/system';
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-// import useAuth from '../../../hooks/useAuth';
-
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import useAuth from '../../../hooks/useAuth';
+import AlertMessage from '../../Shared/AlertMessage/AlertMessage';
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 const Login = () => {
-    // const { handleGoogleLogin, handleUserLogin } = useAuth();
+    const { handleGoogleLogin, handleUserLogin, error, setOpenAlert } = useAuth();
+    console.log(error)
     const { register, handleSubmit } = useForm();
 
     const location = useLocation();
@@ -14,10 +20,11 @@ const Login = () => {
 
     const onSubmit = data => {
         // handleUserLogin(data.email, data.password, navigate, location);
+        console.log(data)
     };
 
     const handleLogin = () => {
-        // handleGoogleLogin(navigate, location);
+        handleGoogleLogin(navigate, location);
     }
 
     return (
@@ -42,7 +49,7 @@ const Login = () => {
                                 <TextField
                                     fullWidth
                                     label="Email"
-                                    id="email"
+                                    type="email"
                                     variant="standard"
                                     sx={{ mb: 2 }}
                                     {...register("email", { required: true })}
@@ -50,7 +57,7 @@ const Login = () => {
                                 <TextField
                                     fullWidth
                                     label="Password"
-                                    id="password"
+                                    type="password"
                                     variant="standard"
                                     sx={{ mb: 3 }}
                                     {...register("password", { required: true })}
@@ -77,6 +84,7 @@ const Login = () => {
                         </Link>
                     </Grid>
                 </Grid>
+                {error && <AlertMessage severity={'error'} message={error} />}
             </Container>
 
         </Box>
