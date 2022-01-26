@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Typography, Pagination, Box } from '@mui/material';
+import { Grid, Typography, Pagination } from '@mui/material';
 import Blog from '../Blog/Blog';
 
 const Blogs = () => {

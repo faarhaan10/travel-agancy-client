@@ -11,6 +11,8 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { Link, useNavigate } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -76,11 +78,35 @@ const Navigation = () => {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))}
+                            {/* mobile device menus */}
+                            <MenuItem onClick={handleCloseNavMenu}>
+                                <Link to='/' style={{ textDecoration: 'none' }}>
+                                    <Typography textAlign="center">
+                                        Home
+                                    </Typography>
+                                </Link>
+                            </MenuItem>
+                            <MenuItem onClick={handleCloseNavMenu}>
+                                <Link to='/blogs' style={{ textDecoration: 'none' }}>
+                                    <Typography textAlign="center">
+                                        Blogs
+                                    </Typography>
+                                </Link>
+                            </MenuItem>
+                            <MenuItem onClick={handleCloseNavMenu}>
+                                <HashLink to='/home#contact' style={{ textDecoration: 'none' }}>
+                                    <Typography textAlign="center">
+                                        Contact us
+                                    </Typography>
+                                </HashLink>
+                            </MenuItem>
+                            <MenuItem onClick={handleCloseNavMenu}>
+                                <HashLink to='/home#about' style={{ textDecoration: 'none' }}>
+                                    <Typography textAlign="center">
+                                        About us
+                                    </Typography>
+                                </HashLink>
+                            </MenuItem>
                         </Menu>
                     </Box>
                     <Typography
@@ -91,18 +117,64 @@ const Navigation = () => {
                     >
                         LOGO
                     </Typography>
+
+                    {/* large device menus */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
+                        <Link
+                            to='/home'
+                            style={{ textDecoration: 'none' }}>
                             <Button
-                                key={page}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                {page}
+                                Home
                             </Button>
-                        ))}
+                        </Link>
+                        <HashLink
+                            to='/home#contact'
+                            style={{ textDecoration: 'none' }}
+                        >
+                            <Button
+                                onClick={handleCloseNavMenu}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
+                            >
+                                Contact us
+                            </Button>
+                        </HashLink>
+                        <HashLink
+                            to='/home#blogs'
+                            style={{ textDecoration: 'none' }}
+                        >
+                            <Button
+                                onClick={handleCloseNavMenu}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
+                            >
+                                Blogs
+                            </Button>
+                        </HashLink>
+                        <HashLink
+                            to='/home#about'
+                            style={{ textDecoration: 'none' }}
+                        >
+                            <Button
+                                onClick={handleCloseNavMenu}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
+                            >
+                                About us
+                            </Button>
+                        </HashLink>
+                        <Link
+                            to='/dashboard'
+                            style={{ textDecoration: 'none' }}>
+                            <Button
+                                onClick={handleCloseNavMenu}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
+                            >
+                                Dashboard
+                            </Button>
+                        </Link>
                     </Box>
-
+                    {/* avatar area  */}
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -125,11 +197,25 @@ const Navigation = () => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
+                            <MenuItem onClick={handleCloseUserMenu}>
+                                <Link to='/profile' style={{ textDecoration: 'none' }}>
+                                    <Typography textAlign="center">
+                                        My Profile
+                                    </Typography>
+                                </Link>
+                            </MenuItem>
+                            <MenuItem onClick={handleCloseUserMenu}>
+                                <Link to='/dashboard' style={{ textDecoration: 'none' }}>
+                                    <Typography textAlign="center">
+                                        Dashboard
+                                    </Typography>
+                                </Link>
+                            </MenuItem>
+                            <MenuItem onClick={handleCloseUserMenu}>
+                                <Typography textAlign="center">
+                                    Logout
+                                </Typography>
+                            </MenuItem>
                         </Menu>
                     </Box>
                 </Toolbar>
