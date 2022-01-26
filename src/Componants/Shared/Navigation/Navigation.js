@@ -144,17 +144,6 @@ const Navigation = () => {
                             </Button>
                         </Link>
                         <HashLink
-                            to='/home#contact'
-                            style={{ textDecoration: 'none' }}
-                        >
-                            <Button
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                Contact us
-                            </Button>
-                        </HashLink>
-                        <HashLink
                             to='/home#blogs'
                             style={{ textDecoration: 'none' }}
                         >
@@ -165,6 +154,18 @@ const Navigation = () => {
                                 Blogs
                             </Button>
                         </HashLink>
+                        <HashLink
+                            to='/home#contact'
+                            style={{ textDecoration: 'none' }}
+                        >
+                            <Button
+                                onClick={handleCloseNavMenu}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
+                            >
+                                Contact us
+                            </Button>
+                        </HashLink>
+
                         <HashLink
                             to='/home#about'
                             style={{ textDecoration: 'none' }}
