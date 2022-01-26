@@ -13,6 +13,7 @@ import Verification from "./Componants/Authentication/Registration/Verification"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BlogDetail from "./Componants/BlogDetail/BlogDetail";
+import Dashboard from "./Componants/Dashboard/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/registration" element={<Registration />} />
           <Route path="/verification" element={<Verification />} />
           <Route path="/details" element={<BlogDetail />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" exact element={<NotFound />} />
         </Routes>
       </BrowserRouter>
