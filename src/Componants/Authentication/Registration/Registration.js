@@ -1,25 +1,23 @@
 import React from 'react';
-import { Alert, Button, Chip, Container, Divider, Grid, TextField, Typography } from '@mui/material';
+import { Button, Chip, Container, Divider, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-// import useAuth from '../../../hooks/useAuth';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 
 const Registration = () => {
-    // const { handleCreateUser, error, handleGoogleLogin } = useAuth();
+    const { handleCreateUser, error, handleGoogleLogin, handleToast } = useAuth();
     const { register, handleSubmit } = useForm();
-
-    const location = useLocation();
     const navigate = useNavigate();
-
     const onSubmit = data => {
-        // handleCreateUser(data.name, data.email, data.password, navigate, location);
+        handleCreateUser(data.name, data.email, data.password, navigate);
     };
 
-
+    if (error) {
+        handleToast('error', error);
+    }
     return (
         <>
-
             <Box sx={{ height: { xs: 'auto', md: '100vh' }, display: 'flex', alignItems: 'center', backgroundColor: '#ddd' }}>
                 <Container maxWidth="sm" sx={{ p: 5, borderRadius: { xs: 0, md: 8 }, boxShadow: '0 0 11px rgb(0 0 0 / 30%)', backgroundColor: '#fff' }}>
                     <Grid container spacing={2} sx={{ alignItems: 'center' }}>

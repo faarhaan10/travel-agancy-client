@@ -1,5 +1,6 @@
 import axios from "axios";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
+import { toast } from 'react-toastify';
 import { useEffect, useState } from "react";
 import firebaseAuthentication from "../Firebase/firebase.init";
 
@@ -12,6 +13,7 @@ const useFirebase = () => {
     const [admin, setAdmin] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [openAlert, setOpenAlert] = useState(true);
+    const [isSent, setIsSent] = useState(false);
 
     //my database url
     const databaseUrl = 'https://rizas-parlour.herokuapp.com';
@@ -24,13 +26,14 @@ const useFirebase = () => {
             .then((userCredential) => {
                 // Signed in 
                 const newUser = { email, displayName: name };
+                setUser(newUser)
                 // saveUser(newUser, 'post');
                 handleUpdateUser(name);
-                navigate('/');
             })
             .catch((error) => {
                 setError(error.message);
-            });
+            })
+            .finally(() => navigate('/verification'));
     };
 
     const handleUpdateUser = name => {
@@ -101,6 +104,30 @@ const useFirebase = () => {
         return () => unsubscribed;
     }, [auth])
 
+    //verification handler
+    const handleVarify = navigate => {
+        sendEmailVerification(auth.currentUser)
+            .then(() => {
+                setIsSent(true);
+            })
+            .finally(() => navigate('/'));
+    };
+
+    const handleToast = (type, message) => {
+        switch (type) {
+            case 'error':
+                toast.error(message);
+                break;
+            case 'warning':
+                toast.warning(message);
+                break;
+            case 'success':
+                toast.success(message);
+                break;
+            default:
+                toast(message);
+        }
+    }
 
     //save user to db
     // const saveUser = (newUser, method) => {
@@ -134,6 +161,9 @@ const useFirebase = () => {
         handleUserLogin,
         handleCreateUser,
         handleGoogleLogin,
+        handleVarify,
+        isSent,
+        handleToast
     }
 };
 

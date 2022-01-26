@@ -3,18 +3,11 @@ import { Button, Chip, Container, Divider, Grid, TextField, Typography } from '@
 import { Box } from '@mui/system';
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
 import useAuth from '../../../hooks/useAuth';
-import AlertMessage from '../../Shared/AlertMessage/AlertMessage';
-const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
-const Login = () => {
-    const { handleGoogleLogin, handleUserLogin, error, setOpenAlert } = useAuth();
-    console.log(error)
-    const { register, handleSubmit } = useForm();
 
+const Login = () => {
+    const { handleGoogleLogin, handleUserLogin, error, handleToast } = useAuth();
+    const { register, handleSubmit } = useForm();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -25,7 +18,10 @@ const Login = () => {
 
     const handleLogin = () => {
         handleGoogleLogin(navigate, location);
-    }
+    };
+    if (error) {
+        handleToast('error', error);
+    };
 
     return (
         <Box sx={{ height: { xs: 'auto', md: '100vh' }, display: 'flex', alignItems: 'center', backgroundColor: '#ddd' }}>
@@ -84,7 +80,6 @@ const Login = () => {
                         </Link>
                     </Grid>
                 </Grid>
-                {error && <AlertMessage severity={'error'} message={error} />}
             </Container>
 
         </Box>
