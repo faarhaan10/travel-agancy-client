@@ -12,6 +12,7 @@ import AuthProvider from "./context/AuthProvider/AuthProvider";
 import Verification from "./Componants/Authentication/Registration/Verification";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BlogDetail from "./Componants/BlogDetail/BlogDetail";
 
 function App() {
   return (
@@ -23,11 +24,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/verification" element={<Verification />} />
+          <Route path="/details" element={<BlogDetail />} />
           <Route path="*" exact element={<NotFound />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer
-        position="top-right"
+        position="bottom-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}

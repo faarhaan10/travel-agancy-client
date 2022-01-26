@@ -71,6 +71,7 @@ const useFirebase = () => {
                 // saveUser(newUser, 'put');
                 const destination = location?.state?.from || '/';
                 navigate(destination);
+                handleToast('success', 'logged in successfully!');
             })
             .catch(error => {
                 setError(error.message);
