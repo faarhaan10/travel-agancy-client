@@ -13,15 +13,14 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Route, Link, Routes, useNavigate } from "react-router-dom";
 import SvgIcon from '@mui/material/SvgIcon';
-import MyOrders from '../MyOrders/MyOrders';
 import Review from '../Review/Review';
 import AddBlogs from '../AddBlogs/AddBlogs';
 import ManageBlogs from '../ManageBlogs/ManageBlogs';
 import ManageAppointments from '../ManageAppointments/ManageAppointments';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
-import Payment from '../Payment/Payment';
 import AdminRoute from '../../ProtectedRoutes/AdminRoute/AdminRoute';
 import useAuth from '../../../hooks/useAuth';
+import MyBlogs from '../MyBlogs/MyBlogs';
 
 
 const drawerWidth = 240;
@@ -51,26 +50,14 @@ function Dashboard(props) {
             <List>
                 {!admin && <Box>
 
-                    <Link to={`payment`} style={{ textDecoration: 'none' }}>
+                    <Link to={`myblogs`} style={{ textDecoration: 'none' }}>
                         <ListItem button >
                             <Typography
                                 variant="button" display="block" color="secondary"
                                 sx={{
                                     ml: 5
                                 }}>
-                                payment
-                            </Typography>
-                        </ListItem>
-                    </Link>
-
-                    <Link to={`myorders`} style={{ textDecoration: 'none' }}>
-                        <ListItem button >
-                            <Typography
-                                variant="button" display="block" color="secondary"
-                                sx={{
-                                    ml: 5
-                                }}>
-                                my orders
+                                my blogs
                             </Typography>
                         </ListItem>
                     </Link>
@@ -239,8 +226,7 @@ function Dashboard(props) {
                 sx={{ flexGrow: 1, px: 3, pt: 7, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Routes>
-                    <Route path="payment" element={<Payment />} />
-                    <Route path="myorders" element={<MyOrders />} />
+                    <Route path="myblogs" element={<MyBlogs />} />
                     <Route path="review" element={<Review />} />
                     <Route path="addblogs" element={<AddBlogs />} />
                     <Route path="manageblogs" element={<AdminRoute><ManageBlogs /></AdminRoute>} />

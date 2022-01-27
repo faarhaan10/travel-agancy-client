@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
+import { Chip } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,27 +12,27 @@ import axios from 'axios';
 import { IconButton, Typography } from '@mui/material';
 import useAuth from '../../../hooks/useAuth';
 
-const MyOrders = () => {
-    const [orders, setOrders] = React.useState([]);
+const MyBlogs = () => {
+    const [blogs, setBlogs] = React.useState([]);
     const { user, databaseUrl } = useAuth();
 
     // load logged in users data 
     React.useEffect(() => {
-        axios.get(`${databaseUrl}/appointments/?email=${user.email}`)
-            .then(res => setOrders(res.data))
+        axios.get(`${databaseUrl}/blogs/all`)
+            .then(res => setBlogs(res.data))
     }, [user.email]);
-
+    console.log(blogs)
 
     // cancel appointment handler
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure to cancel this appoionment?');
         if (proceed) {
-            axios.delete(`${databaseUrl}/appointments/${id}`)
+            axios.delete(`${databaseUrl}/blogs/${id}`)
                 .then(res => {
                     if (res.data.acknowledged) {
                         alert('Appointment Cancelled Succesfully');
-                        const restOrders = orders.filter(order => order._id !== id);
-                        setOrders(restOrders);
+                        const restOrders = blogs.filter(order => order._id !== id);
+                        setBlogs(restOrders);
                     }
                 });
         }
@@ -47,54 +48,65 @@ const MyOrders = () => {
                                 No.
                             </TableCell>
                             <TableCell>
-                                Service Name
+                                Blog Title
                             </TableCell>
                             <TableCell>
-                                Service Time
+                                Post Time
+                            </TableCell>
+                            <TableCell>
+                                Category
+                            </TableCell>
+                            <TableCell>
+                                Location
                             </TableCell>
                             <TableCell>
                                 Status
-                            </TableCell>
-                            <TableCell>
-                                Cancel
                             </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {
-                            orders.map(order => <TableRow
+                            blogs.map(blog => <TableRow
                                 hover
                                 role="checkbox"
                                 tabIndex={-1}
-                                key={order._id}
+                                key={blog._id}
                             >
                                 <TableCell >
-                                    {orders.indexOf(order) + 1}
+                                    {blogs.indexOf(blog) + 1}
                                 </TableCell>
                                 <TableCell >
-                                    {order.service}
+                                    {blog.blogTitle}
                                 </TableCell>
                                 <TableCell >
-                                    {order.date}
+                                    {blog.postDate}
                                 </TableCell>
                                 <TableCell >
-                                    {order.status}
+                                    {blog.catagory}
                                 </TableCell>
                                 <TableCell >
-                                    <IconButton onClick={() => handleDelete(order._id)} aria-label="delete">
-                                        <DeleteIcon color='warning' />
-                                    </IconButton>
+                                    {blog.location}
                                 </TableCell>
+                                <TableCell >
+                                    {blog.status ? <Chip
+                                        label='approved'
+                                        sx={{ backgroundColor: 'lime', color: 'white' }} />
+                                        :
+                                        <Chip
+                                            label='pending'
+                                            sx={{ backgroundColor: 'red', color: 'white' }} />}
+                                </TableCell>
+
                             </TableRow>
                             )}
                     </TableBody>
                 </Table>
             </TableContainer>
-            {!orders.length && <Typography variant="h5" component="div" sx={{ fontWeight: 600, m: 2 }}>
+            {!blogs.length && <Typography variant="h5" component="div" sx={{ fontWeight: 600, m: 2 }}>
                 No Appointments
             </Typography>}
         </Paper >
     );
 };
 
-export default MyOrders;
+export default MyBlogs;

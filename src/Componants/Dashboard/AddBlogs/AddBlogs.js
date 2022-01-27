@@ -75,7 +75,7 @@ const AddBlogs = () => {
                 <Grid item xs={4} sm={4} md={4} >
                     <CssTextField
                         sx={{ width: 1 }}
-                        label="Posted by"
+                        label="Blogger"
                         defaultValue={user.displayName}
                         InputProps={{
                             readOnly: true,
@@ -86,7 +86,18 @@ const AddBlogs = () => {
                 <Grid item xs={4} sm={4} md={4} >
                     <CssTextField
                         sx={{ width: 1 }}
-                        label="Title"
+                        label="Blogger Email"
+                        defaultValue={user.email}
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                        type='text'
+                        {...register("bloggerEmail", { required: true })} />
+                </Grid>
+                <Grid item xs={4} sm={4} md={4} >
+                    <CssTextField
+                        sx={{ width: 1 }}
+                        label="Blog Title"
                         type='text'
                         {...register("blogTitle", { required: true })} />
                 </Grid>
