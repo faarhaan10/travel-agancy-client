@@ -16,7 +16,7 @@ const useFirebase = () => {
     const [isSent, setIsSent] = useState(false);
 
     //my database url
-    const databaseUrl = 'https://rizas-parlour.herokuapp.com';
+    const databaseUrl = 'http://localhost:5000';
 
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
@@ -27,7 +27,7 @@ const useFirebase = () => {
                 // Signed in 
                 const newUser = { email, displayName: name };
                 setUser(newUser)
-                // saveUser(newUser, 'post');
+                saveUser(newUser, 'post');
                 handleUpdateUser(name);
             })
             .catch((error) => {
@@ -68,7 +68,7 @@ const useFirebase = () => {
                     email: user.email,
                     displayName: user.displayName
                 }
-                // saveUser(newUser, 'put');
+                saveUser(newUser, 'put');
                 const destination = location?.state?.from || '/';
                 navigate(destination);
                 handleToast('success', 'logged in successfully!');
@@ -131,24 +131,40 @@ const useFirebase = () => {
     }
 
     //save user to db
-    // const saveUser = (newUser, method) => {
-    //     if (method === 'put') {
-    //         axios.put(`${databaseUrl}/users`, newUser)
-    //             .then()
-    //     }
-    //     else {
-    //         axios.post(`${databaseUrl}/users`, newUser)
-    //             .then()
-    //     }
+    const saveUser = (newUser, method) => {
+        if (method === 'put') {
+            axios.put(`${databaseUrl}/users`, newUser)
+                .then(res => {
+                    handleToast('success', 'users updated');
+                    console.log(res)
+                })
+        }
+        else {
+            axios.post(`${databaseUrl}/users`, newUser)
+                .then(handleToast('success', 'users saved'))
+        }
 
-    // };
+    };
 
     // // check admin
-    // useEffect(() => {
-    //     axios.get(`${databaseUrl}/users?email=${user.email}`)
-    //         .then(res => setAdmin(res.data.admin))
-    //         .catch()
-    // }, [user.email]);
+    useEffect(() => {
+        axios.get(`${databaseUrl}/users?email=${user.email}`)
+            .then(res => setAdmin(res.data.admin))
+            .catch()
+    }, [user.email]);
+
+    // upload image to imgBB
+    const uploadImage = img => {
+        let body = new FormData()
+        body.set('key', '7e550a7fc902522e5934b0e3e9a410d8')
+        body.append('image', img)
+
+        return axios({
+            method: 'post',
+            url: 'https://api.imgbb.com/1/upload',
+            data: body
+        });
+    };
 
     return {
         user,
@@ -164,7 +180,8 @@ const useFirebase = () => {
         handleGoogleLogin,
         handleVarify,
         isSent,
-        handleToast
+        handleToast,
+        uploadImage
     }
 };
 

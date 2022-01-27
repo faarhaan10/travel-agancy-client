@@ -8,13 +8,13 @@ import useAuth from '../../../hooks/useAuth';
 
 const MakeAdmin = () => {
     const { register, handleSubmit, reset } = useForm();
-    const { databaseUrl } = useAuth();
+    const { databaseUrl, handleToast } = useAuth();
 
     const onSubmit = data => {
         axios.put(`${databaseUrl}/users/admin`, data)
             .then(res => {
                 if (res.data.acknowledged) {
-                    alert('Admin added Succesfully');
+                    handleToast('success', 'Admin added Succesfully');
                 }
             });
         reset();

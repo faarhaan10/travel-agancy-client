@@ -16,7 +16,7 @@ import useAuth from '../../../hooks/useAuth';
 
 
 
-const ManageServices = () => {
+const ManageBlogs = () => {
     const [services, setServices] = React.useState([]);
     const { databaseUrl } = useAuth();
 
@@ -116,4 +116,4 @@ const ManageServices = () => {
     );
 };
 
-export default ManageServices;  
+export default ManageBlogs;  

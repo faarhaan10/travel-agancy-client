@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from "axios";
+import { useParams } from "react-router-dom";
 import { Typography, Grid, Container, Stack, Rating } from '@mui/material';
 import Navigation from '../Shared/Navigation/Navigation';
+import useAuth from '../../hooks/useAuth';
 
 
 const BlogDetail = () => {
+    const [blog, setBlog] = useState({});
+    const { databaseUrl } = useAuth();
+    const { blogID } = useParams();
+
+    useEffect(() => {
+        axios.get(`${databaseUrl}/blogs/${blogID}`)
+            .then(res => setBlog(res.data))
+            .catch()
+    }, [blogID]);
+    const { blogTitle, blogImage, postDate, description, date, location, duration, rating, cost } = blog;
+
     const imgFit = {
         height: '420px',
         objectFit: 'contain'
@@ -12,28 +26,28 @@ const BlogDetail = () => {
     return (
         <>
             <Navigation />
-            <Container maxWidth="xl" sx={{ mt: 5 }}>
+            <Container sx={{ mt: 5 }}>
                 <Grid container spacing={2}>
-                    <Grid item xs={12} md={7} >
+                    <Grid item xs={12} md={8} >
                         <Typography variant="h4" component="div"
                             sx={{ textTransform: 'uppercase', fontWeight: 'bold' }}
                         >
-                            Log in
+                            {blogTitle}
                         </Typography>
-                        <img style={imgFit} src="https://media.nomadicmatt.com/2021/grandcanyon2.jpg" alt="" />
+                        <img style={imgFit} src={blogImage} alt={blogTitle} />
                         <Typography variant="h6" component="div">
                             <Typography variant="h6" component="span"
                                 sx={{ textTransform: 'uppercase', fontWeight: 'bold' }}
                             >
-                                Posted:
+                                Posted Date:
                             </Typography>
-                            12/21/2021
+                            {postDate}
                         </Typography>
                         <Typography variant="body1" gutterBottom>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima molestiae dignissimos quos cum ipsam rerum aliquid illo commodi velit quibusdam!
+                            {description}
                         </Typography>
                     </Grid>
-                    <Grid item xs={12} md={5} sx={{ mt: 5 }}>
+                    <Grid item xs={12} md={4} sx={{ mt: 5 }}>
                         <Stack direction="row" spacing={2}>
                             <Typography variant="h6" component="span"
                                 sx={{ textTransform: 'uppercase', fontWeight: 'bold' }}
@@ -41,17 +55,17 @@ const BlogDetail = () => {
                                 Posted by:
                             </Typography>
                             <Typography variant="h6" component="span">
-                                Admin
+                                {blog.blogPoster || 'unknown'}
                             </Typography>
                         </Stack>
                         <Stack direction="row" spacing={2}>
                             <Typography variant="h6" component="span"
                                 sx={{ textTransform: 'uppercase', fontWeight: 'bold' }}
                             >
-                                Date Posted:
+                                Date:
                             </Typography>
                             <Typography variant="h6" component="span">
-                                1212:
+                                {date}
                             </Typography>
                         </Stack>
                         <Stack direction="row" spacing={2}>
@@ -61,7 +75,7 @@ const BlogDetail = () => {
                                 Location:
                             </Typography>
                             <Typography variant="h6" component="span">
-                                1212:
+                                {location}
                             </Typography>
                         </Stack>
                         <Stack direction="row" spacing={2}>
@@ -71,7 +85,7 @@ const BlogDetail = () => {
                                 Duration:
                             </Typography>
                             <Typography variant="h6" component="span">
-                                1212:
+                                {duration}
                             </Typography>
                         </Stack>
                         <Stack direction="row" spacing={2}>
@@ -80,7 +94,7 @@ const BlogDetail = () => {
                             >
                                 Rating:
                             </Typography>
-                            <Rating name="read-only" value={4} readOnly />
+                            <Rating name="read-only" value={parseInt(rating)} readOnly />
                         </Stack>
                         <Stack direction="row" spacing={2}>
                             <Typography variant="h6" component="span"
@@ -89,7 +103,7 @@ const BlogDetail = () => {
                                 Total Cost:
                             </Typography>
                             <Typography variant="h6" component="span">
-                                $1212
+                                ${cost}
                             </Typography>
                         </Stack>
                     </Grid>

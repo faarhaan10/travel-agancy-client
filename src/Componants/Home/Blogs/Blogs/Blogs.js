@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Typography, Pagination } from '@mui/material';
+import axios from "axios";
 import Blog from '../Blog/Blog';
+import useAuth from '../../../../hooks/useAuth';
 
 const Blogs = () => {
+    const [blogs, setBlogs] = useState([]);
+    const { databaseUrl } = useAuth();
+
+    useEffect(() => {
+        axios.get(`${databaseUrl}/blogs`)
+            .then(res => setBlogs(res.data))
+            .catch()
+    }, []);
+
     return (
         <div>
             <Typography variant="h3" component="div"
@@ -11,9 +22,9 @@ const Blogs = () => {
                 Blogs
             </Typography>
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                {Array.from(Array(10)).map((_, index) => (
-                    <Grid item xs={4} sm={4} md={4} key={index}>
-                        <Blog />
+                {blogs.map(blog => (
+                    <Grid item xs={4} sm={4} md={4} key={blog._id}>
+                        <Blog blog={blog} />
                     </Grid>
                 ))}
             </Grid>

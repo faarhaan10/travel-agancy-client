@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BlogDetail from "./Componants/BlogDetail/BlogDetail";
 import Dashboard from "./Componants/Dashboard/Dashboard/Dashboard";
+import PrivateRoute from "./Componants/ProtectedRoutes/PrivateRoute/PrivateRoute";
 
 function App() {
   return (
@@ -25,8 +26,15 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/verification" element={<Verification />} />
-          <Route path="/details" element={<BlogDetail />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/details/:blogID" element={
+            <PrivateRoute>
+              <BlogDetail />
+            </PrivateRoute>} />
+          <Route path="/dashboard/*" element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          } />
           <Route path="*" exact element={<NotFound />} />
         </Routes>
       </BrowserRouter>

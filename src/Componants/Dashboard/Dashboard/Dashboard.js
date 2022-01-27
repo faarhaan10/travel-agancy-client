@@ -15,8 +15,8 @@ import { Route, Link, Routes, useNavigate } from "react-router-dom";
 import SvgIcon from '@mui/material/SvgIcon';
 import MyOrders from '../MyOrders/MyOrders';
 import Review from '../Review/Review';
-import AddService from '../AddService/AddService';
-import ManageServices from '../ManageServices/ManageServices';
+import AddBlogs from '../AddBlogs/AddBlogs';
+import ManageBlogs from '../ManageBlogs/ManageBlogs';
 import ManageAppointments from '../ManageAppointments/ManageAppointments';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import Payment from '../Payment/Payment';
@@ -30,7 +30,7 @@ function Dashboard(props) {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const { window } = props;
     const navigate = useNavigate();
-    const { handleLogOut, admin } = useAuth();
+    const { handleLogOut, admin, user } = useAuth();
 
 
     const handleDrawerToggle = () => {
@@ -87,28 +87,30 @@ function Dashboard(props) {
                         </ListItem>
                     </Link>
                 </Box>}
-                {admin && <Box>
-                    <Link to={'addservice'} style={{ textDecoration: 'none' }}>
+                {user.email && <Box>
+                    <Link to={'addblogs'} style={{ textDecoration: 'none' }}>
                         <ListItem button >
                             <Typography
                                 variant="button" display="block" color="secondary"
                                 sx={{
                                     ml: 5
                                 }}>
-                                add service
+                                add blogs
                             </Typography>
                         </ListItem>
 
                     </Link>
+                </Box>}
+                {admin && <Box>
 
-                    <Link to={'manageservice'} style={{ textDecoration: 'none' }}>
+                    <Link to={'manageblogs'} style={{ textDecoration: 'none' }}>
                         <ListItem button >
                             <Typography
                                 variant="button" display="block" color="secondary"
                                 sx={{
                                     ml: 5
                                 }}>
-                                manage services
+                                manage blogs
                             </Typography>
                         </ListItem>
                     </Link>
@@ -234,14 +236,14 @@ function Dashboard(props) {
             </Box>
             <Box
                 component="main"
-                sx={{ flexGrow: 1, px: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+                sx={{ flexGrow: 1, px: 3, pt: 7, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Routes>
                     <Route path="payment" element={<Payment />} />
                     <Route path="myorders" element={<MyOrders />} />
                     <Route path="review" element={<Review />} />
-                    <Route path="addservice" element={<AdminRoute><AddService /></AdminRoute>} />
-                    <Route path="manageservice" element={<AdminRoute><ManageServices /></AdminRoute>} />
+                    <Route path="addblogs" element={<AddBlogs />} />
+                    <Route path="manageblogs" element={<AdminRoute><ManageBlogs /></AdminRoute>} />
                     <Route path="appointments" element={<AdminRoute><ManageAppointments /></AdminRoute>} />
                     <Route path="makeadmin" element={<AdminRoute><MakeAdmin /></AdminRoute>} />
                 </Routes>

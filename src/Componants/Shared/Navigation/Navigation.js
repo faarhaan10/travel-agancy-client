@@ -178,7 +178,7 @@ const Navigation = () => {
                                 About us
                             </Button>
                         </HashLink>
-                        <Link
+                        {user.email && <Link
                             to='/dashboard'
                             style={{ textDecoration: 'none' }}>
                             <Button
@@ -187,7 +187,7 @@ const Navigation = () => {
                             >
                                 Dashboard
                             </Button>
-                        </Link>
+                        </Link>}
                     </Box>
                     {/* avatar area  */}
                     {user.email ? <Box sx={{ flexGrow: 0 }}>

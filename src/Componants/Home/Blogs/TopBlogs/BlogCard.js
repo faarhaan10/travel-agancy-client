@@ -1,16 +1,17 @@
 import React from 'react';
 import { Typography, Card, Paper, CardMedia, CardContent, CardActions, Button, Chip, Stack, Grid } from '@mui/material';
-
-const BlogCard = () => {
+import { Link } from 'react-router-dom';
+const BlogCard = ({ blog }) => {
+    const { _id, blogImage, location, rating, description, cost, blogTitle } = blog;
     return (
         <Grid item xs={12}>
             <Paper elevation={4} >
                 <Card>
                     <CardMedia
                         component="img"
-                        alt="green iguana"
+                        alt={blogTitle}
                         height="140"
-                        image="/static/images/cards/contemplative-reptile.jpg"
+                        image={blogImage}
                     />
                     <CardContent>
                         <Stack direction="row" sx={{
@@ -18,24 +19,25 @@ const BlogCard = () => {
                             alignItems: 'center'
                         }}>
                             <Chip
-                                label="Africa"
+                                label={`🧭${location}`}
                                 sx={{ backgroundColor: '#bfd4fc', color: 'blue' }} />
                             <Chip
-                                label="⭐4.7"
+                                label={`⭐${parseInt(rating)}`}
                                 sx={{ backgroundColor: '#edf4c9' }} />
                         </Stack>
                         <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 'bold' }}>
-                            Lizards are a widespread group of squamate reptiles, with over 6,000
-                            species, ranging across all continents except Antarctica
+                            {description.slice(0, 140)}...
                         </Typography>
                     </CardContent>
                     <CardActions sx={{
                         justifyContent: 'space-between'
                     }}>
                         <Typography variant="button" display="block" >
-                            $342
+                            💵${cost}
                         </Typography>
-                        <Button size="small" variant="contained">Book Now</Button>
+                        <Link to={`/details/${_id}`}>
+                            <Button size="small" variant="contained">Learn more</Button>
+                        </Link>
                     </CardActions>
                 </Card>
             </Paper>
