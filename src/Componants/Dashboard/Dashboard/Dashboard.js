@@ -20,6 +20,7 @@ import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AdminRoute from '../../ProtectedRoutes/AdminRoute/AdminRoute';
 import useAuth from '../../../hooks/useAuth';
 import MyBlogs from '../MyBlogs/MyBlogs';
+import EditBlog from '../ManageBlogs/EditBlog';
 
 
 const drawerWidth = 240;
@@ -43,7 +44,7 @@ function Dashboard(props) {
 
     const drawer = (
         <div>
-            <Toolbar sx={{ backgroundColor: '#ed6c02' }} style={{ boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)', borderRight: '1px solid orange' }} />
+            <Toolbar sx={{ backgroundColor: '#1976d2' }} style={{ boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)', borderRight: '1px solid orange' }} />
             <Divider />
 
             <List>
@@ -101,18 +102,6 @@ function Dashboard(props) {
                         </ListItem>
                     </Link>
 
-                    <Link to={'appointments'} style={{ textDecoration: 'none' }}>
-                        <ListItem button >
-                            <Typography
-                                variant="button" display="block" color="secondary"
-                                sx={{
-                                    ml: 5
-                                }}>
-                                appointments
-                            </Typography>
-                        </ListItem>
-                    </Link>
-
                     <Link to={"makeadmin"} style={{ textDecoration: 'none' }}>
                         <ListItem button >
                             <Typography
@@ -157,8 +146,7 @@ function Dashboard(props) {
                 position="fixed"
                 sx={{
                     width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    ml: { sm: `${drawerWidth}px` },
-                    backgroundColor: '#ed6c02'
+                    ml: { sm: `${drawerWidth}px` }
                 }}
             >
                 <Toolbar>
@@ -228,7 +216,10 @@ function Dashboard(props) {
                     <Route path="myblogs" element={<MyBlogs />} />
                     <Route path="review" element={<Review />} />
                     <Route path="addblogs" element={<AddBlogs />} />
-                    <Route path="manageblogs" element={<AdminRoute><ManageBlogs /></AdminRoute>} />
+                    <Route path="manageblogs" element={<AdminRoute><ManageBlogs /></AdminRoute>} >
+                        <Route path=":manageID" element={<AdminRoute><EditBlog /></AdminRoute>} />
+                    </Route>
+
                     <Route path="makeadmin" element={<AdminRoute><MakeAdmin /></AdminRoute>} />
                 </Routes>
 

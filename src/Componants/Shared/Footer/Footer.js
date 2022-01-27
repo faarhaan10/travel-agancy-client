@@ -5,33 +5,16 @@ const Footer = () => {
     return (
         <Box sx={{ backgroundColor: '#171717' }}>
             <Container>
-                <Box sx={{ textAlign: 'center', p: 3, my: 5 }}>
-                    <Typography variant="h3" component="div"
-                    >
-                        Subscribe to us!
-                    </Typography>
-                    <TextField
-                        sx={{ mr: 2 }}
-                        size='small'
-                        variant="outlined"
-                        label='Enter your email' />
-                    <Button variant="contained">Contained</Button>
 
-                </Box>
                 <Box>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={3}>
                             <Typography variant="h2" component="div"
-                                sx={{ color: 'gold' }}
+                                sx={{ color: 'white' }}
                             >
-                                Travel Agancy
+                                Travel Hero
                             </Typography>
-                            <Typography variant="body1" gutterBottom sx={{
-                                mb: 5, fontFamily: 'Tangerine', color: 'white', mt: -2
-                                , fontSize: '.8rem'
-                            }}>FEEL FRESH, LOOK BEAUTY
-                            </Typography>
-                            <Button color="secondary">@_rizasparlour</Button>
+                            <Button color="secondary">@_travelhero</Button>
                         </Grid>
                         <Grid item xs={12} md={9}>
                             <Grid container spacing={{ xs: 1, md: 4 }} columns={{ xs: 4, md: 12 }}>

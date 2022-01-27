@@ -1,5 +1,7 @@
-import { Typography, Box, Button, Container } from '@mui/material';
+import { Typography, Box, Container } from '@mui/material';
 import { Swiper, SwiperSlide } from "swiper/react";
+
+
 
 // Import Swiper styles
 import "swiper/css";
@@ -16,7 +18,6 @@ import SwiperCore, {
 SwiperCore.use([Autoplay, Scrollbar]);
 
 const Slider = () => {
-
     return (
         <Container maxWidth="xl" sx={{ height: '90vh' }}>
             <Swiper
@@ -30,6 +31,8 @@ const Slider = () => {
                 spaceBetween={30}
                 centeredSlides={true}
                 className="mySwiper" >
+
+
                 <SwiperSlide>
                     <Box
                         sx={{
@@ -39,16 +42,15 @@ const Slider = () => {
                             alignItems: 'center',
                             justifyContent: 'center',
                             flexDirection: 'column',
-                            backgroundImage: "url(https://i.ibb.co/C2nWz1m/image.png)",
+                            backgroundImage: "url(https://i.ibb.co/0FcLrjp/img3.jpg)",
                             backgroundRepeat: 'no-repeat',
                             backgroundSize: 'cover'
                         }}>
                         <Typography variant="h2" component="div"
                             sx={{ fontFamily: 'Tangerine', pb: 3 }}
                         >
-                            Testimonials1
+                            Travel Blogs
                         </Typography>
-                        <Button variant="contained">Contained</Button>
                     </Box>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -60,16 +62,15 @@ const Slider = () => {
                             alignItems: 'center',
                             justifyContent: 'center',
                             flexDirection: 'column',
-                            backgroundImage: "url(https://i.ibb.co/C2nWz1m/image.png)",
+                            backgroundImage: "url(https://i.ibb.co/McNGjXW/img4.jpg)",
                             backgroundRepeat: 'no-repeat',
                             backgroundSize: 'cover'
                         }}>
                         <Typography variant="h2" component="div"
                             sx={{ fontFamily: 'Tangerine', pb: 3 }}
                         >
-                            Testimonials1
+                            Lifestyle Blogs
                         </Typography>
-                        <Button variant="contained">Contained</Button>
                     </Box>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -81,16 +82,35 @@ const Slider = () => {
                             alignItems: 'center',
                             justifyContent: 'center',
                             flexDirection: 'column',
-                            backgroundImage: "url(https://i.ibb.co/C2nWz1m/image.png)",
+                            backgroundImage: "url(https://i.ibb.co/zhh3xGf/Beautiful-mountains-in-fog-and-standing-young-woman-with-backpack-on-the-peak-at-sunset-in-summer-La.jpg)",
                             backgroundRepeat: 'no-repeat',
                             backgroundSize: 'cover'
                         }}>
                         <Typography variant="h2" component="div"
                             sx={{ fontFamily: 'Tangerine', pb: 3 }}
                         >
-                            Testimonials1
+                            Personal Blogs
                         </Typography>
-                        <Button variant="contained">Contained</Button>
+                    </Box>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <Box
+                        sx={{
+                            height: '100%',
+                            width: '100%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexDirection: 'column',
+                            backgroundImage: "url(https://i.ibb.co/6r4P5p5/img2.jpg)",
+                            backgroundRepeat: 'no-repeat',
+                            backgroundSize: 'cover'
+                        }}>
+                        <Typography variant="h2" component="div"
+                            sx={{ fontFamily: 'Tangerine', pb: 3 }}
+                        >
+                            Vlogs
+                        </Typography>
                     </Box>
                 </SwiperSlide>
             </Swiper >

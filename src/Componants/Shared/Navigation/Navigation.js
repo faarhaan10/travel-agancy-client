@@ -60,7 +60,7 @@ const Navigation = () => {
                         component="div"
                         sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
                     >
-                        LOGO
+                        Travel Hero
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -115,12 +115,20 @@ const Navigation = () => {
                                 </HashLink>
                             </MenuItem>
                             <MenuItem onClick={handleCloseNavMenu}>
-                                <HashLink to='/home#about' style={{ textDecoration: 'none' }}>
+                                <HashLink to='/home#testimonials' style={{ textDecoration: 'none' }}>
                                     <Typography textAlign="center">
-                                        About us
+                                        Testimonials
                                     </Typography>
                                 </HashLink>
                             </MenuItem>
+                            {user.email && <MenuItem onClick={handleCloseNavMenu}>
+                                <Link to='/dashboard' style={{ textDecoration: 'none' }}>
+                                    <Typography textAlign="center">
+                                        Dashboard
+                                    </Typography>
+                                </Link>
+                            </MenuItem>}
+
                         </Menu>
                     </Box>
                     <Typography
@@ -129,7 +137,7 @@ const Navigation = () => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                     >
-                        LOGO
+                        Travel Hero
                     </Typography>
 
                     {/* large device menus */}
@@ -166,18 +174,19 @@ const Navigation = () => {
                                 Contact us
                             </Button>
                         </HashLink>
-
                         <HashLink
-                            to='/home#about'
+                            to='/home#testimonials'
                             style={{ textDecoration: 'none' }}
                         >
                             <Button
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                About us
+                                Testimonials
                             </Button>
                         </HashLink>
+
+
                         {user.email && <Link
                             to='/dashboard'
                             style={{ textDecoration: 'none' }}>

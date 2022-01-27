@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, Card, Paper, CardMedia, CardContent, CardActions, Button, CardActionArea } from '@mui/material';
 
 const Blog = ({ blog }) => {
-    console.log(blog);
+
     const { blogImage, blogTitle, description } = blog;
     return (
         <Paper elevation={4} >

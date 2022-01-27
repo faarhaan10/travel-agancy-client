@@ -62,6 +62,7 @@ const AddBlogs = () => {
         uploadImage(img)
             .then(res => {
                 setBlogImage(res.data.data.url);
+                console.log(res.data.data.url);
             })
     }
     return (

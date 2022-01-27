@@ -17,7 +17,7 @@ const Blogs = () => {
     return (
         <div>
             <Typography variant="h3" component="div"
-                sx={{ color: 'crimson', fontWeight: 'bold' }}
+                sx={{ fontWeight: 'bold' }}
             >
                 Blogs
             </Typography>

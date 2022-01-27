@@ -7,7 +7,7 @@ import axios from 'axios';
 import useAuth from '../../../hooks/useAuth';
 
 const Review = () => {
-    const { user, databaseUrl } = useAuth();
+    const { user, databaseUrl, handleToast } = useAuth();
     const { register, handleSubmit, reset } = useForm();
     const { email } = user;
 
@@ -20,7 +20,7 @@ const Review = () => {
         axios.post(`${databaseUrl}/reviews`, newReview)
             .then(res => {
                 if (res.data.acknowledged) {
-                    alert('Review added Succesfully');
+                    handleToast('success', 'Review added Succesfully');
                 }
             });
         reset();
