@@ -35,7 +35,7 @@ const BlogCard = ({ blog }) => {
                         <Typography variant="button" display="block" >
                             💵${cost}
                         </Typography>
-                        <Link to={`/details/${_id}`}>
+                        <Link to={`/details/${_id}`} style={{ textDecoration: 'none' }}>
                             <Button size="small" variant="contained">Learn more</Button>
                         </Link>
                     </CardActions>

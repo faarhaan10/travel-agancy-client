@@ -5,10 +5,10 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import DeleteIcon from '@mui/icons-material/Delete';
 import TableRow from '@mui/material/TableRow';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { IconButton, Typography } from '@mui/material';
+import { Chip, Typography, Button } from '@mui/material';
 import useAuth from '../../../hooks/useAuth';
 
 
@@ -17,17 +17,17 @@ import useAuth from '../../../hooks/useAuth';
 
 
 const ManageBlogs = () => {
-    const [services, setServices] = React.useState([]);
+    const [blogs, setBlogs] = React.useState([]);
     const { databaseUrl } = useAuth();
 
     // load all services 
     React.useEffect(() => {
-        axios.get(`${databaseUrl}/services`)
+        axios.get(`${databaseUrl}/blogs/all`)
             .then(res => {
-                setServices(res.data);
+                setBlogs(res.data);
             })
     }, []);
-
+    console.log(blogs)
 
     // Product delete handler
     const handleDelete = id => {
@@ -38,8 +38,8 @@ const ManageBlogs = () => {
                 .then(res => {
                     if (res.data.acknowledged) {
                         alert('Product deleted Succesfully');
-                        const restProducts = services.filter(product => product._id !== id);
-                        setServices(restProducts);
+                        const restProducts = blogs.filter(product => product._id !== id);
+                        setBlogs(restProducts);
                     }
                 });
         }
@@ -57,50 +57,63 @@ const ManageBlogs = () => {
                                 No.
                             </TableCell>
                             <TableCell>
-                                Title
+                                Blog Title
                             </TableCell>
                             <TableCell>
-                                Price
+                                Blogger
                             </TableCell>
                             <TableCell>
-                                Rating
+                                Blogger Email
                             </TableCell>
                             <TableCell>
-                                Stock
+                                Location
                             </TableCell>
                             <TableCell>
-                                Delete
+                                Status
+                            </TableCell>
+                            <TableCell>
+                                Manage
                             </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {
-                            services.map(service => <TableRow
+                            blogs.map(blog => <TableRow
                                 hover
                                 role="checkbox"
                                 tabIndex={-1}
-                                key={service._id}
+                                key={blog._id}
                             >
                                 <TableCell >
-                                    {services.indexOf(service) + 1}
+                                    {blogs.indexOf(blog) + 1}
                                 </TableCell>
                                 <TableCell >
-                                    {service.serviceTitle}
+                                    {blog.blogTitle}
                                 </TableCell>
                                 <TableCell >
-                                    ${service.price}
+                                    {blog?.blogPoster || 'annonymous'}
                                 </TableCell>
                                 <TableCell >
-                                    {service.rating}
+                                    {blog?.bloggerEmail || 'annonymous'}
                                 </TableCell>
                                 <TableCell >
-                                    In Stock
+                                    {blog.location}
                                 </TableCell>
                                 <TableCell >
-                                    <IconButton onClick={() => handleDelete(service._id)} aria-label="delete">
-                                        <DeleteIcon color='warning' />
-                                    </IconButton>
+                                    {blog.status ? <Chip
+                                        label='approved'
+                                        sx={{ backgroundColor: 'lime', color: 'white' }} />
+                                        :
+                                        <Chip
+                                            label='pending'
+                                            sx={{ backgroundColor: 'red', color: 'white' }} />}
                                 </TableCell>
+                                <TableCell >
+                                    <Link to={`/details/`} style={{ textDecoration: 'none' }}>
+                                        <Button size="small" variant="contained">EDIT</Button>
+                                    </Link>
+                                </TableCell>
+
                             </TableRow>
                             )}
 
@@ -108,8 +121,8 @@ const ManageBlogs = () => {
                 </Table>
             </TableContainer>
 
-            {!services.length && <Typography variant="h5" component="div" sx={{ fontWeight: 600, m: 2 }}>
-                No orders
+            {!blogs.length && <Typography variant="h5" component="div" sx={{ fontWeight: 600, m: 2 }}>
+                No Blogs
             </Typography>
             }
         </Paper >

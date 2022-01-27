@@ -16,7 +16,6 @@ import SvgIcon from '@mui/material/SvgIcon';
 import Review from '../Review/Review';
 import AddBlogs from '../AddBlogs/AddBlogs';
 import ManageBlogs from '../ManageBlogs/ManageBlogs';
-import ManageAppointments from '../ManageAppointments/ManageAppointments';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AdminRoute from '../../ProtectedRoutes/AdminRoute/AdminRoute';
 import useAuth from '../../../hooks/useAuth';
@@ -230,7 +229,6 @@ function Dashboard(props) {
                     <Route path="review" element={<Review />} />
                     <Route path="addblogs" element={<AddBlogs />} />
                     <Route path="manageblogs" element={<AdminRoute><ManageBlogs /></AdminRoute>} />
-                    <Route path="appointments" element={<AdminRoute><ManageAppointments /></AdminRoute>} />
                     <Route path="makeadmin" element={<AdminRoute><MakeAdmin /></AdminRoute>} />
                 </Routes>
 

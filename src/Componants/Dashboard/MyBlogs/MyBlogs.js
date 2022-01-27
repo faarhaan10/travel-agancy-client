@@ -1,15 +1,13 @@
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
-import { Chip } from '@mui/material';
+import { Chip, Typography } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import DeleteIcon from '@mui/icons-material/Delete';
 import TableRow from '@mui/material/TableRow';
 import axios from 'axios';
-import { IconButton, Typography } from '@mui/material';
 import useAuth from '../../../hooks/useAuth';
 
 const MyBlogs = () => {
@@ -21,22 +19,7 @@ const MyBlogs = () => {
         axios.get(`${databaseUrl}/blogs/all`)
             .then(res => setBlogs(res.data))
     }, [user.email]);
-    console.log(blogs)
 
-    // cancel appointment handler
-    const handleDelete = id => {
-        const proceed = window.confirm('Are you sure to cancel this appoionment?');
-        if (proceed) {
-            axios.delete(`${databaseUrl}/blogs/${id}`)
-                .then(res => {
-                    if (res.data.acknowledged) {
-                        alert('Appointment Cancelled Succesfully');
-                        const restOrders = blogs.filter(order => order._id !== id);
-                        setBlogs(restOrders);
-                    }
-                });
-        }
-    }
 
     return (
         <Paper sx={{ width: '100%', overflow: 'hidden', mt: 3 }}>
@@ -103,7 +86,7 @@ const MyBlogs = () => {
                 </Table>
             </TableContainer>
             {!blogs.length && <Typography variant="h5" component="div" sx={{ fontWeight: 600, m: 2 }}>
-                No Appointments
+                No Blogs
             </Typography>}
         </Paper >
     );
