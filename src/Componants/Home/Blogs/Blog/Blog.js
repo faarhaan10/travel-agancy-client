@@ -6,12 +6,20 @@ import useAuth from '../../../../hooks/useAuth';
 const Blog = ({ blog }) => {
 
     const { _id, blogImage, blogTitle, description } = blog;
-    const { compare, setCompare } = useAuth();
+    const { compare, setCompare, handleToast } = useAuth();
 
     const handleCompare = obj => {
-        const newComparion = [...compare];
-        newComparion.push(obj)
-        setCompare(newComparion)
+        if (compare.length === 3) {
+            handleToast('warning', 'You can compare maximum 3');
+            return;
+        }
+        if (compare.includes(obj)) {
+            handleToast('warning', 'Already added');
+            return;
+        }
+
+        const newComparion = [...compare, obj];
+        setCompare(newComparion);
     };
 
 

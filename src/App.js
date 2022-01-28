@@ -49,6 +49,7 @@ function App() {
         draggable
         pauseOnHover
         theme="colored"
+        sx={{ zIndex: 999 }}
       />
     </AuthProvider>
   );

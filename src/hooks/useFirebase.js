@@ -137,7 +137,6 @@ const useFirebase = () => {
             axios.put(`${databaseUrl}/users`, newUser)
                 .then(res => {
                     handleToast('success', 'users updated');
-                    console.log(res)
                 })
         }
         else {

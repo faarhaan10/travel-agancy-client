@@ -23,7 +23,7 @@ const Blogs = () => {
     }, [page]);
 
     const handlePage = (event, value) => {
-        setPage(value);
+        setPage(value - 1);
     };
     return (
         <div>
