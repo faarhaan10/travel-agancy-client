@@ -16,10 +16,9 @@ const MyBlogs = () => {
 
     // load logged in users data 
     React.useEffect(() => {
-        axios.get(`${databaseUrl}/blogs/all`)
+        axios.get(`${databaseUrl}/blogs/all?email=${user.email}`)
             .then(res => setBlogs(res.data))
     }, [user.email]);
-
 
     return (
         <Paper sx={{ width: '100%', overflow: 'hidden', mt: 3 }}>
