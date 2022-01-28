@@ -6,14 +6,25 @@ import useAuth from '../../../../hooks/useAuth';
 
 const Blogs = () => {
     const [blogs, setBlogs] = useState([]);
+    const [newBlogs, setNewBlogs] = useState([]);
     const { databaseUrl } = useAuth();
-
+    const [page, setPage] = React.useState(0);
+    const [pageCount, setPageCount] = React.useState(0);
+    const size = 10;
+    console.log(page)
     useEffect(() => {
-        axios.get(`${databaseUrl}/blogs`)
-            .then(res => setBlogs(res.data))
+        axios.get(`${databaseUrl}/blogs?page=${page}&&size=${size}`)
+            .then(res => {
+                setBlogs(res.data.result);
+                setNewBlogs(res.data.result);
+                setPageCount(res.data.count);
+            })
             .catch()
-    }, []);
+    }, [page]);
 
+    const handlePage = (event, value) => {
+        setPage(value);
+    };
     return (
         <div>
             <Typography variant="h3" component="div"
@@ -28,7 +39,12 @@ const Blogs = () => {
                     </Grid>
                 ))}
             </Grid>
-            <Pagination count={10} color="primary" sx={{ py: 3 }} />
+            <Pagination
+                count={Math.ceil(pageCount / 10)}
+                color="primary"
+                sx={{ py: 3 }}
+                onChange={handlePage}
+            />
         </div>
     );
 };

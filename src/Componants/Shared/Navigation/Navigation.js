@@ -233,7 +233,7 @@ const Navigation = () => {
                                             component="img"
                                             height='100'
                                             image={user.photoURL}
-                                            alt="green iguana"
+                                            alt={user.displayName}
                                         />}
                                         <Typography textAlign="center">
                                             {user.displayName}

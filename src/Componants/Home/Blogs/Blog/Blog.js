@@ -1,9 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Typography, Card, Paper, CardMedia, CardContent, CardActions, Button, CardActionArea } from '@mui/material';
+import useAuth from '../../../../hooks/useAuth';
 
 const Blog = ({ blog }) => {
 
-    const { blogImage, blogTitle, description } = blog;
+    const { _id, blogImage, blogTitle, description } = blog;
+    const { compare, setCompare } = useAuth();
+
+    const handleCompare = obj => {
+        const newComparion = [...compare];
+        newComparion.push(obj)
+        setCompare(newComparion)
+    };
+
+
     return (
         <Paper elevation={4} >
             <Card>
@@ -24,12 +35,12 @@ const Blog = ({ blog }) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary">
-                        Compair
+                    <Button size="small" color="primary" onClick={() => handleCompare(blog)}>
+                        Compaare
                     </Button>
-                    <Button size="small" color="primary">
-                        Learn More
-                    </Button>
+                    <Link to={`/details/${_id}`} style={{ textDecoration: 'none' }}>
+                        <Button size="small" >Learn more</Button>
+                    </Link>
                 </CardActions>
             </Card>
         </Paper>

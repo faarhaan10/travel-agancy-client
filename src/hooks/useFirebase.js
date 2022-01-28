@@ -14,6 +14,7 @@ const useFirebase = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [openAlert, setOpenAlert] = useState(true);
     const [isSent, setIsSent] = useState(false);
+    const [compare, setCompare] = useState([]);
 
     //my database url
     const databaseUrl = 'http://localhost:5000';
@@ -181,7 +182,9 @@ const useFirebase = () => {
         handleVarify,
         isSent,
         handleToast,
-        uploadImage
+        uploadImage,
+        compare,
+        setCompare
     }
 };
 
