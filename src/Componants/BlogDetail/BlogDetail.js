@@ -16,7 +16,7 @@ const BlogDetail = () => {
             .then(res => setBlog(res.data))
             .catch()
     }, [blogID]);
-    const { blogTitle, blogImage, postDate, description, date, location, duration, rating, cost } = blog;
+    const { blogTitle, blogImage, postDate, description, date, location, duration, rating, cost, catagory } = blog;
 
     const imgFit = {
         height: '420px',
@@ -85,7 +85,7 @@ const BlogDetail = () => {
                                 Duration:
                             </Typography>
                             <Typography variant="h6" component="span">
-                                {duration}
+                                {duration} Days
                             </Typography>
                         </Stack>
                         <Stack direction="row" spacing={2}>
@@ -100,10 +100,20 @@ const BlogDetail = () => {
                             <Typography variant="h6" component="span"
                                 sx={{ textTransform: 'uppercase', fontWeight: 'bold' }}
                             >
+                                Category:
+                            </Typography>
+                            <Typography variant="h6" component="span">
+                                {catagory}
+                            </Typography>
+                        </Stack>
+                        <Stack direction="row" spacing={2}>
+                            <Typography variant="h6" component="span"
+                                sx={{ textTransform: 'uppercase', fontWeight: 'bold' }}
+                            >
                                 Total Cost:
                             </Typography>
                             <Typography variant="h6" component="span">
-                                ${cost}
+                                ${cost}/package
                             </Typography>
                         </Stack>
                     </Grid>

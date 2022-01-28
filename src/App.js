@@ -18,6 +18,7 @@ import BlogDetail from "./Componants/BlogDetail/BlogDetail";
 import Dashboard from "./Componants/Dashboard/Dashboard/Dashboard";
 import PrivateRoute from "./Componants/ProtectedRoutes/PrivateRoute/PrivateRoute";
 import { useEffect } from "react";
+import Compare from "./Componants/Compare/Compare";
 
 function App() {
 
@@ -38,6 +39,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/verification" element={<Verification />} />
+          <Route path="/compare" element={
+            <PrivateRoute>
+              <Compare />
+            </PrivateRoute>} />
           <Route path="/details/:blogID" element={
             <PrivateRoute>
               <BlogDetail />

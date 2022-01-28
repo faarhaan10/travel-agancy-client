@@ -227,19 +227,18 @@ const Navigation = () => {
                             onClose={handleCloseUserMenu}
                         >
                             <MenuItem onClick={handleCloseUserMenu}>
-                                <Link to='/profile' style={{ textDecoration: 'none' }}>
-                                    <Stack>
-                                        {user.photoURL && <CardMedia
-                                            component="img"
-                                            height='100'
-                                            image={user.photoURL}
-                                            alt={user.displayName}
-                                        />}
-                                        <Typography textAlign="center">
-                                            {user.displayName}
-                                        </Typography>
-                                    </Stack>
-                                </Link>
+
+                                <Stack>
+                                    {user.photoURL && <CardMedia
+                                        component="img"
+                                        height='100'
+                                        image={user.photoURL}
+                                        alt={user.displayName}
+                                    />}
+                                    <Typography textAlign="center">
+                                        {user.displayName}
+                                    </Typography>
+                                </Stack>
                             </MenuItem>
                             <MenuItem onClick={handleCloseUserMenu}>
                                 <Link to='/dashboard' style={{ textDecoration: 'none' }}>

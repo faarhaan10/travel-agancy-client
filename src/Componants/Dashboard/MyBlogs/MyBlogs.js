@@ -86,7 +86,7 @@ const MyBlogs = () => {
                 </Table>
             </TableContainer>
             {!blogs.length && <Typography variant="h5" component="div" sx={{ fontWeight: 600, m: 2 }}>
-                No Blogs
+                Please wait...
             </Typography>}
         </Paper >
     );

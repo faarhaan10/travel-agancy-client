@@ -2,19 +2,20 @@ import React from 'react';
 import { Button, Container, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useForm } from 'react-hook-form';
+import useAuth from '../../../hooks/useAuth';
 
 const Contact = () => {
-    const { register, handleSubmit } = useForm();
+    const { handleToast } = useAuth();
+    const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
-        alert('Thanks for contacting us!')
+        handleToast('success', 'Thanks for contacting us!');
+        reset();
     };
 
     return (
         <Container id='contact' sx={{ mt: 5, pt: 8 }} data-aos='fade-up'>
             <Box sx={{ textAlign: 'center' }}>
-                <Typography variant="h2" component="div"
-                    sx={{ fontFamily: 'Tangerine' }}
-                >
+                <Typography variant="h3" component="div" >
                     Contact US
                 </Typography>
             </Box>
@@ -44,7 +45,7 @@ const Contact = () => {
                                 id="mobile"
                                 variant="standard"
                                 sx={{ mb: 2 }}
-                                {...register("phn", { required: true })}
+                                {...register("phn")}
                             />
                             <TextField
                                 fullWidth

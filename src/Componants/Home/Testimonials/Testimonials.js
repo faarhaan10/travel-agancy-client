@@ -7,8 +7,8 @@ const Testimonials = () => {
     return (
         <Container id='testimonials' sx={{ my: 5, py: 5 }} data-aos='fade-up'>
             <Box sx={{ textAlign: 'center' }}>
-                <Typography variant="h2" component="div"
-                    sx={{ fontFamily: 'Tangerine', pb: 3 }}
+                <Typography variant="h3" component="div"
+                    sx={{ pb: 3 }}
                 >
                     Testimonials
                 </Typography>

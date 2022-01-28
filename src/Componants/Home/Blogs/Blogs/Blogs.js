@@ -11,7 +11,7 @@ const Blogs = () => {
     const [page, setPage] = React.useState(0);
     const [pageCount, setPageCount] = React.useState(0);
     const size = 10;
-    console.log(page)
+
     useEffect(() => {
         axios.get(`${databaseUrl}/blogs?page=${page}&&size=${size}`)
             .then(res => {

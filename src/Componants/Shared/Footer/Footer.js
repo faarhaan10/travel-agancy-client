@@ -66,6 +66,13 @@ const Footer = () => {
                     </Grid>
                 </Box>
             </Container>
+            <Box sx={{ backgroundColor: 'black' }}>
+                <Container sx={{ py: 2, }}>
+                    <Typography variant="overline" display="block" sx={{ color: 'white', textAlign: 'center' }}>
+                        © Travel Hero-2022. All Right Reserved By Farhan Elias
+                    </Typography>
+                </Container>
+            </Box>
         </Box>
     );
 };

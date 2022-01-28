@@ -45,7 +45,7 @@ const AddBlogs = () => {
     const onSubmit = data => {
         const postDate = new Date(Date.now()).toLocaleString().split(',')[0];
         const newData = { blogImage, catagory, postDate, status, ...data };
-        console.log(newData)
+
         axios.post(`${databaseUrl}/blogs`, newData)
             .then(res => {
                 if (res.data.acknowledged) {
@@ -62,7 +62,6 @@ const AddBlogs = () => {
         uploadImage(img)
             .then(res => {
                 setBlogImage(res.data.data.url);
-                console.log(res.data.data.url);
             })
     }
     return (

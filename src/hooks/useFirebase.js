@@ -17,7 +17,7 @@ const useFirebase = () => {
     const [compare, setCompare] = useState([]);
 
     //my database url
-    const databaseUrl = 'http://localhost:5000';
+    const databaseUrl = 'https://travel-hero-2022.herokuapp.com';
 
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();

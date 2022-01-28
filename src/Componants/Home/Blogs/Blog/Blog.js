@@ -9,8 +9,8 @@ const Blog = ({ blog }) => {
     const { compare, setCompare, handleToast } = useAuth();
 
     const handleCompare = obj => {
-        if (compare.length === 3) {
-            handleToast('warning', 'You can compare maximum 3');
+        if (compare.length === 5) {
+            handleToast('warning', 'You can compare maximum 5');
             return;
         }
         if (compare.includes(obj)) {
@@ -44,7 +44,7 @@ const Blog = ({ blog }) => {
                 </CardActionArea>
                 <CardActions>
                     <Button size="small" color="primary" onClick={() => handleCompare(blog)}>
-                        Compaare
+                        Compare
                     </Button>
                     <Link to={`/details/${_id}`} style={{ textDecoration: 'none' }}>
                         <Button size="small" >Learn more</Button>
