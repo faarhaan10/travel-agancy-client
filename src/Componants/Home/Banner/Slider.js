@@ -33,7 +33,7 @@ const Slider = () => {
         },
         {
             id: 2,
-            img: 'http://designcrazzy.com/demo/destination_wp/wp-content/uploads/2017/06/aerial-view-of-people-on-beach-4253835-2-scaled.jpg',
+            img: 'https://i.ibb.co/s63Znjc/beach.jpg',
             country: 'us',
             desc: 'Dont think only Live Your Own Story'
         },

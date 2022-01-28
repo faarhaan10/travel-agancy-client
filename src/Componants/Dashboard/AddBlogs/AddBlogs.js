@@ -35,7 +35,6 @@ const CssTextField = styled(TextField)({
 const AddBlogs = () => {
     const [blogImage, setBlogImage] = React.useState('');
     const [catagory, setCatagory] = React.useState('');
-    // const [status, setStatus] = React.useState(false);
 
     const { databaseUrl, handleToast, uploadImage, admin, user } = useAuth();
     const { register, handleSubmit, reset } = useForm();

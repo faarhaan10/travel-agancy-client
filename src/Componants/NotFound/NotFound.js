@@ -11,12 +11,12 @@ const NotFound = () => {
                 <Container maxWidth="sm" sx={{ p: 5, borderRadius: { xs: 0, md: 8 }, boxShadow: '0 0 11px rgb(0 0 0 / 30%)', backgroundColor: '#fff' }}>
                     <Box sx={{ textAlign: 'center' }}>
                         <Typography variant="h5" component="div"
-                            sx={{ fontFamily: 'Tangerine' }}
+
                         >
                             Oops! we can not found the page
                             please dont try anonymous route
                         </Typography>
-                        <img src={notfound} alt="" style={{ width: '100%' }} />
+                        <img src={notfound} alt="" style={{ width: '80%' }} />
                     </Box>
 
 
