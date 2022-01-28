@@ -169,6 +169,7 @@ const useFirebase = () => {
     return {
         user,
         error,
+        setError,
         admin,
         isLoading,
         openAlert,

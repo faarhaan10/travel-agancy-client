@@ -41,7 +41,7 @@ const MakeAdmin = () => {
                 >
                     Make Admin
                 </Typography>
-                <Stack sx={{ flexDirection: 'row', mx: 'auto' }}>
+                <Stack sx={{ flexDirection: 'row', mx: 'auto' }} data-aos='fade-up'>
                     <TextField
                         label="Email"
                         size="small"

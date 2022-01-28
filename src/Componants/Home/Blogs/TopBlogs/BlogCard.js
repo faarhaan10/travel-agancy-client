@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const BlogCard = ({ blog }) => {
     const { _id, blogImage, location, rating, description, cost, blogTitle } = blog;
     return (
-        <Grid item xs={12}>
+        <Grid item xs={12} data-aos='fade-up'>
             <Paper elevation={4} >
                 <Card>
                     <CardMedia

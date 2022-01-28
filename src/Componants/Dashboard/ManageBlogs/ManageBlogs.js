@@ -84,6 +84,7 @@ const ManageBlogs = () => {
                                     role="checkbox"
                                     tabIndex={-1}
                                     key={blog._id}
+                                    data-aos='fade-up'
                                 >
                                     <TableCell >
                                         {blogs.indexOf(blog) + 1}

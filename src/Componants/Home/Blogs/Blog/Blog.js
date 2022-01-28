@@ -24,7 +24,7 @@ const Blog = ({ blog }) => {
 
 
     return (
-        <Paper elevation={4} >
+        <Paper elevation={4} data-aos='fade-up'>
             <Card>
                 <CardActionArea>
                     <CardMedia

@@ -14,6 +14,7 @@ const Comparison = () => {
         <Paper
             sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 99, backgroundColor: 'rgba(0, 0, 0, 0.9)', py: 5 }}
             elevation={3}
+            data-aos='fade-up'
         >
             <Container >
                 <Box sx={{ height: '20vh' }}>
@@ -30,6 +31,7 @@ const Comparison = () => {
                                         key={blog._id}
                                         variant="contained"
                                         color="info"
+                                        data-aos='fade-up'
                                         onClick={() => handleClose(blog._id)}
                                     >
                                         {blog.blogTitle}❌
@@ -40,15 +42,17 @@ const Comparison = () => {
                         </Grid>
                         <Grid item xs={12} md={4}>
                             <Stack direction="row" spacing={2} sx={{ justifyContent: 'center' }}>
-                                <Button
+                                {compare.length > 1 && <Button
                                     variant="contained"
                                     color="success"
+                                    data-aos='fade-up'
                                 >
                                     Compare
-                                </Button>
+                                </Button>}
                                 <Button
                                     variant="contained"
                                     color="error"
+                                    data-aos='fade-up'
                                     onClick={() => setCompare([])}
                                 >
                                     Cancel

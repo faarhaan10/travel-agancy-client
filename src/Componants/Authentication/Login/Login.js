@@ -12,8 +12,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const onSubmit = data => {
-        // handleUserLogin(data.email, data.password, navigate, location);
-        console.log(data)
+        handleUserLogin(data.email, data.password, navigate, location);
     };
 
     const handleLogin = () => {
@@ -24,9 +23,9 @@ const Login = () => {
     };
 
     return (
-        <Box sx={{ height: { xs: 'auto', md: '100vh' }, display: 'flex', alignItems: 'center', backgroundColor: '#ddd' }}>
-            <Container maxWidth="sm" sx={{ p: 5, borderRadius: { xs: 0, md: 8 }, boxShadow: '0 0 11px rgb(0 0 0 / 30%)', backgroundColor: '#fff' }}>
-                <Grid container spacing={2} sx={{ alignItems: 'center' }}>
+        <Box sx={{ height: { xs: 'auto', md: '100vh' }, display: 'flex', alignItems: 'center', backgroundColor: '#ddd' }} >
+            <Container maxWidth="sm" sx={{ p: 5, borderRadius: { xs: 0, md: 8 }, boxShadow: '0 0 11px rgb(0 0 0 / 30%)', backgroundColor: '#fff' }} data-aos='fade-up'>
+                <Grid container spacing={2} sx={{ alignItems: 'center' }}  >
                     <Grid item xs={12} md={4} >
                         <Typography variant="h4" gutterBottom component="div"
 

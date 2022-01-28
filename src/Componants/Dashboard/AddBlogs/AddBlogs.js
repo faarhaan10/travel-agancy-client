@@ -70,6 +70,7 @@ const AddBlogs = () => {
             component="form"
             onSubmit={handleSubmit(onSubmit)}
             sx={{ mt: 5 }}
+            data-aos='fade-up'
         >
 
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
